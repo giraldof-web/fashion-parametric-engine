@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Parametric Engine - MVP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Fashion Parametric Engine</h1>
+            <p class="subtitle">Transform sketches and prompts into industrial garment data</p>
+        </header>
+
+        <!-- Main Interface -->
+        <div class="main-grid">
+            <!-- Left Panel: Input Controls -->
+            <section class="panel input-panel">
+                <h2>Input Parameters</h2>
+
+                <!-- Garment Type Selection -->
+                <div class="form-group">
+                    <label for="garmentType">Garment Type</label>
+                    <select id="garmentType">
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="shirt">Shirt</option>
+                        <option value="pants">Pants</option>
+                        <option value="jacket">Jacket</option>
+                        <option value="dress">Dress</option>
+                        <option value="skirt">Skirt</option>
+                        <option value="hoodie">Hoodie</option>
+                    </select>
+                </div>
+
+                <!-- Design Prompt -->
+                <div class="form-group">
+                    <label for="prompt">Design Brief</label>
+                    <textarea id="prompt" placeholder="e.g., 'Oversized long sleeve cotton shirt with relaxed fit and minimal seams'"></textarea>
+                </div>
+
+                <!-- Sketch Upload -->
+                <div class="form-group">
+                    <label for="sketch">Upload Sketch (Optional)</label>
+                    <input type="file" id="sketch" accept="image/*">
+                    <small>PNG, JPG, SVG supported</small>
+                </div>
+
+                <!-- Parametric Controls -->
+                <div class="form-section">
+                    <h3>Parametric Dimensions</h3>
+
+                    <div class="slider-group">
+                        <label for="width">Chest Width: <span id="widthValue">50</span> cm</label>
+                        <input type="range" id="width" min="30" max="80" value="50">
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="length">Length: <span id="lengthValue">70</span> cm</label>
+                        <input type="range" id="length" min="40" max="120" value="70">
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="sleeves">Sleeve Length: <span id="sleevesValue">20</span> cm</label>
+                        <input type="range" id="sleeves" min="0" max="70" value="20">
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="fit">Fit</label>
+                        <select id="fit">
+                            <option value="slim">Slim</option>
+                            <option value="regular" selected>Regular</option>
+                            <option value="relaxed">Relaxed</option>
+                            <option value="oversized">Oversized</option>
+                        </select>
+                    </div>
+
+                    <div class="slider-group">
+                        <label for="panels">Panel Count: <span id="panelsValue">4</span></label>
+                        <input type="range" id="panels" min="2" max="12" value="4">
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button id="analyzeBtn" class="btn btn-primary">Analyze & Generate</button>
+                    <button id="resetBtn" class="btn btn-secondary">Reset</button>
+                </div>
+            </section>
+
+            <!-- Right Panel: Output & Preview -->
+            <section class="panel output-panel">
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="preview">Preview</button>
+                    <button class="tab-btn" data-tab="schema">Schema</button>
+                    <button class="tab-btn" data-tab="techpack">Tech Pack</button>
+                    <button class="tab-btn" data-tab="costing">Costing</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content active" id="preview-tab">
+                    <h3>Garment Preview (SVG)</h3>
+                    <div id="svgPreview" class="svg-container">
+                        <p class="placeholder">SVG rendering will appear here</p>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="schema-tab">
+                    <h3>Garment Schema</h3>
+                    <pre id="schemaOutput" class="code-block">/* Schema will appear here */</pre>
+                    <button id="downloadSchemaBtn" class="btn btn-small">Download JSON</button>
+                </div>
+
+                <div class="tab-content" id="techpack-tab">
+                    <h3>Technical Specification</h3>
+                    <pre id="techpackOutput" class="code-block">/* Tech Pack will appear here */</pre>
+                    <button id="downloadTechpackBtn" class="btn btn-small">Download Tech Pack</button>
+                </div>
+
+                <div class="tab-content" id="costing-tab">
+                    <h3>Production Cost Estimate</h3>
+                    <div id="costingOutput" class="costing-display">
+                        <p class="placeholder">Cost breakdown will appear here</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Status Bar -->
+        <footer class="status-bar">
+            <span id="status">Ready</span>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
